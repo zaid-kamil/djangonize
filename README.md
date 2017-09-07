@@ -1,0 +1,2 @@
+# djangonize
+zaidkamil.pythonanywhere.com
