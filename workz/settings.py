@@ -25,11 +25,7 @@ SECRET_KEY = 'lxb(+12r7b8zicwobjz=8e)%!*(&=i5dkq@a39bffgkm_cnmu8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-<<<<<<< HEAD
-ALLOWED_HOSTS = [u'zaidkamil.pythonanywhere.com']
-=======
 ALLOWED_HOSTS = [u'zaidkamil.pythonanywhere.com','127.0.0.1']
->>>>>>> 915875b3b02213030cf65b9c777826733b086cc2
 
 
 # Application definition
@@ -41,10 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
-=======
     'main',
->>>>>>> 915875b3b02213030cf65b9c777826733b086cc2
 ]
 
 MIDDLEWARE = [
@@ -62,11 +55,7 @@ ROOT_URLCONF = 'workz.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-<<<<<<< HEAD
-        'DIRS': [],
-=======
         'DIRS': [os.path.join(BASE_DIR,'templates')],
->>>>>>> 915875b3b02213030cf65b9c777826733b086cc2
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -125,10 +114,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-<<<<<<< HEAD
-=======
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
->>>>>>> 915875b3b02213030cf65b9c777826733b086cc2
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/
@@ -137,16 +123,8 @@ STATIC_URL = '/static/'
 
 # default static files settings for PythonAnywhere.
 # see https://help.pythonanywhere.com/pages/DjangoStaticFiles for more info
-<<<<<<< HEAD
-MEDIA_ROOT = u'/home/zaidkamil/workz/media'
-MEDIA_URL = '/media/'
-STATIC_ROOT = u'/home/zaidkamil/workz/static'
-STATIC_URL = '/static/'
-=======
 STATIC_URL = '/static/'
 STATIC_ROOT =os.path.join(BASE_DIR, 'static')
 
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT =os.path.join(BASE_DIR, 'media')
->>>>>>> 915875b3b02213030cf65b9c777826733b086cc2
