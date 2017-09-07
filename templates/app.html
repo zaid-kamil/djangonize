@@ -1,0 +1,77 @@
+<!-- app.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Home</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<style>
+	
+	</style>
+	{% block extracss %}{% endblock%}	
+</head>
+<body>
+		
+	<div class="container">
+		<div class="row">
+			<div class="col-md-10 mt-4 offset-1">
+				{% if messages %}
+				<ul class="messages">
+					{% for message in messages %}
+					<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+					{% endfor %}
+				</ul>
+				{% endif %}
+
+				<div>
+					<div class="card mb-2 text-center bg-info"> <h2 >DJANGONIZE</h2></div>
+					<div class="input-group">
+						<input type="text" class="form-control search-area" placeholder="Post title or content" aria-describedby="btn">
+						<button class="input-group-addon btn btn-success" id="btn">Search</button> 
+					</div>
+				</div>
+				<div class="card result mt-2" style="display:none"></div>
+			</div>
+		</div>
+	</div>	
+	{% block content%}{% endblock %}
+	<script
+	src="https://code.jquery.com/jquery-3.2.1.min.js"
+	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	{% block extrajs %}{% endblock %}
+	<script>
+		$('#btn').on('click',function(){
+			var content=$('.search-area').val();
+			var container=$('.result');
+			if (content == "") {container.slideUp('fast');}
+			else{
+				$.ajax({
+					type: "GET",
+					url: "/search/",
+					data: {'q': content},
+					success: function(response) {
+						container.html("");
+						for (i = 0; i < response.length; i++) { 
+ 					   		data=response[i]['fields'];
+ 					   		id=response[i]['pk'];
+ 					   		console.log(id);
+ 					   		container.append(
+ 					   			"<div class='card-block'><a class='link' href='/post/"+id+"'>"+data['title'] + "</a></div>"
+ 					   			);
+						}
+						container.slideDown('fast');
+					},
+					error:function(response){
+						container.text("No results found");
+					}
+				});
+			}
+		});
+	</script>
+
+</body>
+</html>
